@@ -1,15 +1,15 @@
-def gyroturn(robot, angle):
+def gyroturn(robot, angle, max_speed = 70, min_speed = 10):
     def get_distance(a, b):
-        return int(math.fabs(math.fabs(a) - math.fabs(b)))
+        return int(fabs(fabs(a) - fabs(b)))
     robot.set_stop_action('brake')
     hub.motion_sensor.reset_yaw_angle()
-    direction = int(angle / math.fabs(angle)) # 1 is clockwise,  -1 is counterclockwise
+    direction = int(angle / fabs(angle)) # 1 is clockwise,-1 is counterclockwise
     current_angle = 0
     distance = angle * direction
     speed = 0
     while current_angle*direction < angle*direction:
-        robot.start_tank(speed* direction, speed*direction*-1)
+        robot.start_tank(speed* direction, 0)
         current_angle = hub.motion_sensor.get_yaw_angle()
         distance = get_distance(current_angle, angle)
-        speed = int(distance / math.fabs(angle) * 25) + 5 # we get a number between 5 and 30
+        speed = int(distance / fabs(angle) * (max_speed - min_speed)) + min_speed # we get a number between min_speed and max_speed
     robot.stop()
