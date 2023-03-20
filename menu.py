@@ -9,7 +9,7 @@ hub = MSHub()
 import hub as hub2
 
 cancel = False
-cancelReady = False
+running = False
 
 def first():
     global cancel
@@ -61,19 +61,21 @@ def fourth():
     hub.light_matrix.show('00000:00000:00000:00000:00009')
 
 def menu():
-    global cancelReady
+    global running
+    global cancel
     hub2.button.right.callback(breakFunction)
     hub.light_matrix.set_orientation('upside down')
     menu = ['first', 'second', 'third', 'fourth']
-    selected = start_menu(menu)
-    hub.light_matrix.write('>')
-    wait_for_seconds(1)
-    cancelReady = True
-    for n in range(selected, len(menu)):
-        locals()[menu[n]]()
-        if n < len(menu) - 1:
-            hub.left_button.wait_until_pressed()
-    raise Exception("stop")
+    selected = 0
+    while True:
+        selected = start_menu(menu, selected)
+        hub.light_matrix.write('>')
+        wait_for_seconds(1)
+        running = True
+        locals()[menu[selected]]()
+        running = False
+        cancel = False
+        selected+=1
 
 def display_selected_start(selected, nb):
     total = 25
@@ -92,8 +94,8 @@ def display_selected_start(selected, nb):
             matrix_line = matrix_line + ':'
     hub.light_matrix.show(matrix_line)
 
-def start_menu(missions):
-    selected = 0
+def start_menu(missions, selected = 0):
+    selected = selected % len(missions)
     while True:
         if hub.left_button.is_pressed() and not hub.right_button.is_pressed():
             selected+= 1
@@ -105,8 +107,9 @@ def start_menu(missions):
         wait_for_seconds(0.1)
 
 def breakFunction(args):
-    global cancel, cancelReady
-    if cancelReady:
+    global cancel
+    global running
+    if running == True:
         cancel = True
 
 menu()
