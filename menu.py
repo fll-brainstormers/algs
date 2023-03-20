@@ -69,7 +69,7 @@ def menu():
     selected = 0
     while True:
         selected = start_menu(menu, selected)
-        hub.light_matrix.write('>')
+        display_play()
         wait_for_seconds(1)
         running = True
         locals()[menu[selected]]()
@@ -93,23 +93,55 @@ def display_selected_start(selected, nb):
         if (n % 5 == 0 and n != 0):
             matrix_line = matrix_line + ':'
     hub.light_matrix.show(matrix_line)
+    display_pause()
 
 def start_menu(missions, selected = 0):
     selected = selected % len(missions)
+    changed = True
     while True:
         if hub.left_button.is_pressed() and not hub.right_button.is_pressed():
             selected+= 1
+            changed = True
         elif hub.right_button.is_pressed() and not hub.left_button.is_pressed():
             selected-= 1
+            changed = True
         elif hub.right_button.is_pressed() and hub.left_button.is_pressed():
             return selected % len(missions)
-        display_selected_start(selected % len(missions), len(missions))
-        wait_for_seconds(0.1)
+        if changed == True:
+            display_selected_start(selected % len(missions), len(missions))
+            changed = False
+        wait_for_seconds(0.15)
 
 def breakFunction(args):
     global cancel
     global running
     if running == True:
         cancel = True
+
+def display_pause():
+    clear_sub_menu()
+    hub.light_matrix.set_pixel(1, 2, 100)
+    hub.light_matrix.set_pixel(1, 3, 100)
+    hub.light_matrix.set_pixel(1, 4, 100)
+    hub.light_matrix.set_pixel(3, 2, 100)
+    hub.light_matrix.set_pixel(3, 3, 100)
+    hub.light_matrix.set_pixel(3, 4, 100)
+
+def display_play():
+    clear_sub_menu()
+    hub.light_matrix.set_pixel(1, 2, 100)
+    hub.light_matrix.set_pixel(2, 3, 100)
+    hub.light_matrix.set_pixel(1, 4, 100)
+
+def clear_sub_menu():
+    hub.light_matrix.set_pixel(1, 2, 0)
+    hub.light_matrix.set_pixel(1, 3, 0)
+    hub.light_matrix.set_pixel(1, 4, 0)
+    hub.light_matrix.set_pixel(3, 2, 0)
+    hub.light_matrix.set_pixel(3, 3, 0)
+    hub.light_matrix.set_pixel(3, 4, 0)
+    hub.light_matrix.set_pixel(2, 3, 0)
+
+
 
 menu()
