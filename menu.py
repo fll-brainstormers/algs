@@ -7,57 +7,15 @@ hub = PrimeHub()
 
 import hub as hub2
 
+robot = MotorPair('D', 'C')
+
 def first():
     global cancel
-    before = '00000:'
-    after = ':00000:00000:00000'
     for i in range(5):
-        line = ''
-        for j in range(5):
             if cancel == True:
                 return
-            if i == j:
-                line+= '9'
-            else:
-                line+='0'
-        hub.light_matrix.show(before + line + after)
-        wait_for_seconds(0.5)
-    
-def second():
-    hub.light_matrix.show('00000:00000:90000:00000:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:09000:00000:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00900:00000:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00090:00000:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00009:00000:00000')
-
-def third():
-    hub.light_matrix.show('00000:00000:00000:90000:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:09000:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00900:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00090:00000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00009:00000')
-
-def fourth():
-    hub.light_matrix.show('00000:00000:00000:00000:90000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00000:09000')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00000:00900')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00000:00090')
-    wait_for_seconds(0.2)
-    hub.light_matrix.show('00000:00000:00000:00000:00009')
-
-
-
+        robot.move(20, 'cm', 0, 50)
+        robot.move(10, 'cm', 100, 50)
 
 """
 Menu feature
@@ -149,7 +107,8 @@ hub2.button.right.callback(breakFunction)
 
 menu([
     'first',
-    'second',
-    'third',
-    'fourth'
+    'first',
+    'first',
+    'first',
+    'first'
 ])
