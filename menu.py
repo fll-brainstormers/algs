@@ -93,6 +93,7 @@ def menu(functionsList):
         wait_for_seconds(1)
         running = True
         locals()[functionsList[selected]]()
+        running = False
         cancel = False
         selected+=1
 
