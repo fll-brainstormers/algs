@@ -12,8 +12,8 @@ robot = MotorPair('D', 'C')
 def first():
     global cancel
     for i in range(5):
-            if cancel == True:
-                return
+        if cancel == True:
+            return
         robot.move(20, 'cm', 0, 50)
         robot.move(10, 'cm', 100, 50)
 
@@ -84,7 +84,7 @@ def menu(functionsList):
             if changed == True:
                 display_selected_start(selected % len(missions), len(missions))
                 changed = False
-            wait_for_seconds(0.15)
+            wait_for_seconds(0.1)
 
     selected = 0
     while True:
