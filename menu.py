@@ -71,42 +71,42 @@ def menu(functionsList):
 
     def display_pause():
         clear_sub_menu()
+        hub.light_matrix.set_pixel(1, 0, 100)
+        hub.light_matrix.set_pixel(1, 1, 100)
         hub.light_matrix.set_pixel(1, 2, 100)
-        hub.light_matrix.set_pixel(1, 3, 100)
-        hub.light_matrix.set_pixel(1, 4, 100)
+        hub.light_matrix.set_pixel(3, 0, 100)
+        hub.light_matrix.set_pixel(3, 1, 100)
         hub.light_matrix.set_pixel(3, 2, 100)
-        hub.light_matrix.set_pixel(3, 3, 100)
-        hub.light_matrix.set_pixel(3, 4, 100)
 
     def display_play():
         clear_sub_menu()
-        hub.light_matrix.set_pixel(1, 2, 100)
-        hub.light_matrix.set_pixel(2, 3, 100)
-        hub.light_matrix.set_pixel(1, 4, 100)
+        hub.light_matrix.set_pixel(3, 0, 100)
+        hub.light_matrix.set_pixel(2, 1, 100)
+        hub.light_matrix.set_pixel(3, 2, 100)
 
     def clear_sub_menu():
+        hub.light_matrix.set_pixel(1, 0, 0)
+        hub.light_matrix.set_pixel(1, 1, 0)
         hub.light_matrix.set_pixel(1, 2, 0)
-        hub.light_matrix.set_pixel(1, 3, 0)
-        hub.light_matrix.set_pixel(1, 4, 0)
+        hub.light_matrix.set_pixel(2, 1, 0)
+        hub.light_matrix.set_pixel(3, 0, 0)
+        hub.light_matrix.set_pixel(3, 1, 0)
         hub.light_matrix.set_pixel(3, 2, 0)
-        hub.light_matrix.set_pixel(3, 3, 0)
-        hub.light_matrix.set_pixel(3, 4, 0)
-        hub.light_matrix.set_pixel(2, 3, 0)
 
     def display_selected_start(selected, nb):
         total = 25
         line = ''
         for n in range(total):
             if n == selected:
-                line+= '9'
+                line = '9' + line
             elif n < nb:
-                line+= '5'
+                line = '5' + line
             else:
-                line+= '0'
+                line = '0' + line
         matrix_line = ''
         for n in range(total):
             matrix_line = matrix_line + line[n]
-            if (n % 5 == 0 and n != 0):
+            if ((n+1) % 5 == 0 and n != 0):
                 matrix_line = matrix_line + ':'
         hub2.display.show(hub2.Image(matrix_line))
         display_pause()
@@ -128,7 +128,6 @@ def menu(functionsList):
                 changed = False
             wait_for_seconds(0.15)
 
-    hub.light_matrix.set_orientation('upside down')
     selected = 0
     while True:
         selected = start_menu(functionsList, selected)
