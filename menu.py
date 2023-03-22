@@ -1,10 +1,9 @@
 # LEGO typestandard slot:9 autostart
-from mindstorms import MSHub, Motor, MotorPair, ColorSensor, DistanceSensor, App
-from mindstorms.control import wait_for_seconds
-import math
+from spike import PrimeHub, MotorPair
+from spike.control import wait_for_seconds
 
 # Crée tes objets ici.
-hub = MSHub()
+hub = PrimeHub()
 
 import hub as hub2
 
@@ -109,7 +108,7 @@ def menu(functionsList):
             matrix_line = matrix_line + line[n]
             if (n % 5 == 0 and n != 0):
                 matrix_line = matrix_line + ':'
-        hub.light_matrix.show(matrix_line)
+        hub2.display.show(hub2.Image(matrix_line))
         display_pause()
 
     def start_menu(missions, selected = 0):
