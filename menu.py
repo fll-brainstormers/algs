@@ -1,13 +1,26 @@
 # LEGO typestandard slot:9 autostart
 from spike import PrimeHub, MotorPair
 from spike.control import wait_for_seconds
+from hub import battery
 
 # Crée tes objets ici.
 hub = PrimeHub()
 
 import hub as hub2
 
+BATTERY_LIMIT = 7500
+
 robot = MotorPair('D', 'C')
+
+def check_battery():
+    bat = battery.voltage()
+    if (bat > BATTERY_LIMIT):
+        print('\033[32m' + 'Battery ok: ' + str(bat) + '\033[0m')
+    else:
+        print('\033[31m' + 'Battery low: ' + str(bat) + '\033[0m')
+
+check_battery()
+
 
 def first():
     global cancel
