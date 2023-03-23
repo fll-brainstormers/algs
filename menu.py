@@ -17,6 +17,9 @@ def first():
         robot.move(20, 'cm', 0, 50)
         robot.move(10, 'cm', 100, 50)
 
+def exit():
+    raise SystemExit
+
 """
 Menu feature
 """
@@ -111,5 +114,5 @@ menu([
     'first',
     'first',
     'first',
-    'first'
+    'exit'
 ])
