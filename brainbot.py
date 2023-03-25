@@ -247,7 +247,8 @@ def menu(functionsList):
     selected = 0
     while True:
         selected = start_menu(functionsList, selected)
-        display_play()
+        if functionsList[selected] != 'exit':
+            display_play()
         wait_for_seconds(1)
         running = True
         locals()[functionsList[selected]]()
