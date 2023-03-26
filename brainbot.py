@@ -75,27 +75,27 @@ def follow_line(color, distance,is_right = False, speed = 50):
         brain_bot.start_tank_at_power(int(speed+correction), speed)
     brain_bot.stop()
 
-SPEED = 30
 def hand():
     global cancel
-    #20 pts
-    brain_bot.move_tank(1750,'degrees', SPEED, SPEED)
+    # j'avance jusqu'à la ligne
+    brain_bot.move_tank(2050,'degrees', 40, 40)
     if cancel == True:
         return
-    #120
+    # je me tourne vers la ligne
     left_motor.run_for_degrees(-450, 35)
-    brain_bot.move_tank(-350,'degrees', SPEED, SPEED)
+
+    # brain_bot.move_tank(-350,'degrees', 30, 30)
     if cancel == True:
         return
-    follow_line(color,450)
-    brain_bot.move_tank(850,'degrees', 98, 100)
+    follow_line(left_color_sensor, 450, 30)
+    brain_bot.move_tank(850,'degrees', 100, 100)
     if cancel == True:
         return
     #retour
-    brain_bot.move_tank(-1200,'degrees', 100, 100)
-    right_motor.run_for_degrees(500, 35)
+    brain_bot.move_tank(-1200,'degrees', 70, 70)
+    brain_bot.move(400, 'degrees', -100, 50)
+    # right_motor.run_for_degrees(1000, 35)
     brain_bot.move_tank(2000,'degrees', 100, 100)
-    brain_bot.stop()
 
 
 def eolienne():
