@@ -154,6 +154,11 @@ def television():
         return
     brain_bot.move(-800, 'degrees', 0, 100)
 
+def stockage_energie():
+    brain_bot.move_tank(90, 'cm', 50, 50)
+    # brain_bot.move_tank(-5, 'cm', 30, 30)
+    motor_pair.move_tank(-90, 'degrees', 20, 20)
+    brain_bot.move_tank(-100, 'cm', 95, 100)
 
 """
 Menu amélioré
@@ -250,6 +255,7 @@ menu([
     'television',
     'hand',
     'oil_station',
+    'stockage_energie',
     'panneau_solaire',
     'exit'
 ])
