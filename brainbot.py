@@ -112,7 +112,7 @@ def hand():
     brain_bot.move_tank(2000,'degrees', 100, 100)
     brain_bot.stop()
 
-# l'eolienne
+
 def eolienne():
     global cancel
     brain_bot.move(400,'degrees',0,50)
@@ -211,6 +211,7 @@ def menu(functionsList):
 
     def display_selected_start(selected, nb):
         total = 25
+        # génère une chaine de caractères représentant la matrice lumineuse
         line = ''
         for n in range(total):
             if n == selected:
@@ -220,6 +221,8 @@ def menu(functionsList):
             else:
                 line = '0' + line
         matrix_line = ''
+
+        # ajoute les : au bon endroit
         for n in range(total):
             matrix_line = matrix_line + line[n]
             if ((n+1) % 5 == 0 and n != 0):
