@@ -160,6 +160,12 @@ def stockage_energie():
     motor_pair.move_tank(-90, 'degrees', 20, 20)
     brain_bot.move_tank(-100, 'cm', 95, 100)
 
+def usine_jouets():
+    brain_bot.move_tank(110, 'cm', 70, 70)
+    motor_pair.move_tank(-90, 'degrees', 10, 10)
+    brain_bot.move_tank(-10, 'cm', 0, 30)
+    brain_bot.move_tank(-20, 'cm', 70, 70)
+
 """
 Menu amélioré
 """
@@ -257,5 +263,6 @@ menu([
     'oil_station',
     'stockage_energie',
     'panneau_solaire',
+    'usine_jouets '
     'exit'
 ])
