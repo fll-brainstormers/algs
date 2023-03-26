@@ -133,15 +133,15 @@ def eolienne():
     if cancel == True:
         return
     wait_for_seconds(0.75)
-    brain_bot.move(-300,'degrees',0,100)
-    left_motor.run_for_degrees(600, 75)
-    brain_bot.move(-2000,'degrees',0,100)
-    brain_bot.stop()
-    '''
-    # retour ne marche pas
+def panneau_solaire():
+    brain_bot.move(1650, 'degrees', 0, 30)
+    brain_bot.move(230, 'degrees', -100, 30)
+    brain_bot.move(1450, 'degrees', 0, 30)
+    brain_bot.move(200, 'degrees', -100, 30)
+    brain_bot.move(500, 'degrees', 0, 30)
+    brain_bot.move(210, 'degrees', -100, 30)
+    brain_bot.move(2000, 'degrees', 0, 100)
 
-    brain_bot.move(1250,'degrees',0,50)
-    '''
 #mission pétrolier
 def oil_station():
     global cancel
@@ -273,5 +273,6 @@ menu([
     'mission_television',
     'hand',
     'oil_station',
+    'panneau_solaire',
     'exit'
 ])
