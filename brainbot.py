@@ -136,7 +136,7 @@ def panneau_solaire():
 #mission pétrolier
 def oil_station():
     global cancel
-    brain_bot.move_tank(45, 'cm', 30, 30)
+    brain_bot.move_tank(53, 'cm', 30, 30)
     if cancel == True:
         return
     for i in range(4):
@@ -145,16 +145,6 @@ def oil_station():
         brain_bot.move_tank(-5, 'cm', 30, 30)
         if cancel == True:
             return
-    brain_bot.move_tank(180, 'degrees', 30,0)
-    brain_bot.move(5, 'cm')
-    if cancel == True:
-        return
-    brain_bot.move_tank(-90, 'degrees', 0,30)
-    brain_bot.move(-1000, 'degrees',0, 100)
-    if cancel == True:
-        return
-    brain_bot.move(10, 'cm')
-    brain_bot.move_tank(180, 'degrees', 0,100)
     brain_bot.move(-1250, 'degrees',0, 100)
 
 def television():
