@@ -13,6 +13,9 @@ import hub as hub2
 
 BATTERY_LIMIT = 7500
 
+cancel = False
+running = False
+
 """
 Vérification du niveau de batterie
 """
@@ -178,9 +181,6 @@ def mission_television():
 """
 Menu amélioré
 """
-cancel = False
-running = False
-
 def menu(functionsList):
     global running
     global cancel
