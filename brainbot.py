@@ -34,18 +34,20 @@ Function de sortie du programme. Plus rapide que quand on appuie sur le bouton c
 def exit():
     raise SystemExit
 
-# capteur de couleur de gauche
-color = ColorSensor('A')
 # la variable des moteurs du robot
-brain_bot = MotorPair('D', 'C')
+brain_bot = MotorPair('D', 'C') # acier
+# brain_bot = MotorPair('B', 'A') # plastique
 # moteur de droite
-right_motor = Motor('D')
+right_motor = Motor('D') # acier
+# right_motor = Motor('B') # plastique
 right_motor.set_degrees_counted(0)
-left_motor = Motor('C')
+left_motor = Motor('C') # acier
+# left_motor = Motor('A') # plastique
 left_motor.set_degrees_counted(0)
-#capteur de couleur de gauche
-left_color_sensor = ColorSensor('A')
-right_color_sensor = ColorSensor('B')
+left_color_sensor = ColorSensor('B') # acier
+# left_color_sensor = ColorSensor('D') # plastique
+right_color_sensor = ColorSensor('A') # acier
+# right_color_sensor = ColorSensor('C') # plastique
 #le moteur du module du haut
 motor_pair = MotorPair('E', 'F')
 # nous définissons que quand le robot s'arrête, il ne freine pas
