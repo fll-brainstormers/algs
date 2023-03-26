@@ -73,7 +73,6 @@ def follow_line(color, distance,is_right = False, speed = 50):
         D_fix = derivative * 0
         correction = P_fix + I_fix + D_fix
         brain_bot.start_tank_at_power(int(speed+correction), speed)
-    brain_bot.stop()
 
 def hand():
     global cancel
