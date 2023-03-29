@@ -106,11 +106,11 @@ def eolienne():
     for i in range(3):
         if cancel == True:
             return
-        brain_bot.move(600,'degrees', 0, 70)
+        brain_bot.move(1,'seconds', 0, 70)
         wait_for_seconds(0.75)
         brain_bot.move(-300,'degrees', 0, 25)
     # derniere poussée
-    brain_bot.move(600,'degrees', 0, 75)
+    brain_bot.move(1,'seconds', 0, 70)
     if cancel == True:
         return
     wait_for_seconds(0.75)
@@ -118,7 +118,7 @@ def eolienne():
     brain_bot.move(-400,'degrees',0,30)
     brain_bot.move(300,'degrees',-100,30)
     left_motor.run_for_degrees(100, 30)
-    brain_bot.move(-2000, 'degrees', 20, 100)
+    brain_bot.move(-2000, 'degrees', 0, 100)
 
 def panneau_solaire():
     brain_bot.move(1650, 'degrees', 0, 30)
