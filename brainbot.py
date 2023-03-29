@@ -219,15 +219,28 @@ def menu(functionsList):
     def start_menu(missions, selected = 0):
         selected = selected % len(missions)
         changed = True
+        long_press_left_counter = 0
+        long_press_right_counter = 0
         while True:
-            if hub.left_button.is_pressed() and not hub.right_button.is_pressed():
-                selected+= 1
-                changed = True
-            elif hub.right_button.is_pressed() and not hub.left_button.is_pressed():
-                selected-= 1
-                changed = True
-            elif hub.right_button.is_pressed() and hub.left_button.is_pressed():
-                return selected % len(missions)
+            if long_press_left_counter >=5 or long_press_right_counter >= 10:
+                display_play()
+            if hub.left_button.is_pressed():
+                long_press_left_counter+=1
+            elif hub.right_button.is_pressed():
+                long_press_right_counter+=1
+            else:
+                if long_press_left_counter < 5 and long_press_left_counter > 0:
+                    selected+= 1
+                    changed = True
+                elif long_press_left_counter >= 5:
+                    return selected % len(missions)
+                elif long_press_right_counter < 10 and long_press_right_counter > 0:
+                    selected-= 1
+                    changed = True
+                elif long_press_right_counter >= 10:
+                    exit()
+                long_press_left_counter = 0
+                long_press_right_counter = 0
             if changed == True:
                 display_selected_start(selected % len(missions), len(missions))
                 changed = False
@@ -236,8 +249,6 @@ def menu(functionsList):
     selected = 0
     while True:
         selected = start_menu(functionsList, selected)
-        if functionsList[selected] != 'exit':
-            display_play()
         wait_for_seconds(1)
         running = True
         locals()[functionsList[selected]]()
