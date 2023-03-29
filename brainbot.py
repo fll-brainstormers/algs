@@ -71,28 +71,6 @@ def follow_line(color, distance,is_right = False, speed = 50):
         brain_bot.start_at_power(speed, int(correction))
     brain_bot.stop()
 
-def hand():
-    global cancel
-    # j'avance jusqu'à la ligne
-    brain_bot.move_tank(2050,'degrees', 40, 40)
-    if cancel == True:
-        return
-    # je me tourne vers la ligne
-    left_motor.run_for_degrees(-450, 35)
-
-    # brain_bot.move_tank(-350,'degrees', 30, 30)
-    if cancel == True:
-        return
-    follow_line(left_color_sensor, 450, 30)
-    brain_bot.move_tank(850,'degrees', 100, 100)
-    if cancel == True:
-        return
-    #retour
-    brain_bot.move_tank(-1200,'degrees', 70, 70)
-    brain_bot.move(400, 'degrees', -100, 50)
-    # right_motor.run_for_degrees(1000, 35)
-    brain_bot.move_tank(2000,'degrees', 100, 100)
-
 
 def eolienne():
     global cancel
@@ -120,15 +98,6 @@ def eolienne():
     left_motor.run_for_degrees(100, 30)
     brain_bot.move(-2000, 'degrees', 0, 100)
 
-def panneau_solaire():
-    brain_bot.move(1650, 'degrees', 0, 30)
-    brain_bot.move(230, 'degrees', -100, 30)
-    brain_bot.move(1450, 'degrees', 0, 30)
-    brain_bot.move(200, 'degrees', -100, 30)
-    brain_bot.move(500, 'degrees', 0, 30)
-    brain_bot.move(210, 'degrees', -100, 30)
-    brain_bot.move(2000, 'degrees', 0, 100)
-
 #mission pétrolier
 def oil_station():
     global cancel
@@ -151,11 +120,62 @@ def television():
         return
     brain_bot.move(-800, 'degrees', 0, 100)
 
-def stockage_energie():
-    brain_bot.move_tank(90, 'cm', 50, 50)
-    # brain_bot.move_tank(-5, 'cm', 30, 30)
-    motor_pair.move_tank(-90, 'degrees', 20, 20)
-    brain_bot.move_tank(-100, 'cm', 95, 100)
+def depot_main_solaire():
+    # on releve le module au maximum
+    motor_pair.move_tank(1, 'seconds', 0, 20)
+    if cancel == True:
+        return
+    # on avance pour attraper la ligne
+    brain_bot.move(7, 'cm', 0, 30)
+    if cancel == True:
+        return
+    follow_line(left_color_sensor, 1200, False, 50)
+    if cancel == True:
+        return
+    # on avance jusqu'au stockage d'énergie
+    brain_bot.move(0.5, 'seconds', 0, 50)
+    # on lache les unités d'énergie
+    motor_pair.move_tank(-140, 'degrees', 0, 20)
+    if cancel == True:
+        return
+    # on recule pour attraper de nouveau la ligne
+    brain_bot.move(-15, 'cm', 0, 30)
+    brain_bot.move_tank(200, 'degrees', 50, 0)
+    follow_line(left_color_sensor, 700, False, 50)
+    if cancel == True:
+        return
+    # on fait la main
+    motor_pair.move_tank(20, 'degrees', 0, 30)
+    brain_bot.move_tank(225, 'degrees', 50, 0)
+    if cancel == True:
+        return
+    brain_bot.move(1.5, 'seconds', 0, -50)
+    brain_bot.move(5, 'cm', 0, 30)
+    # on relève le module pour ne pas géner pour la suite
+    motor_pair.move_tank(1, 'seconds', 0, 50)
+    # on se positionne pour être en face de la première unité d'énergie du panneau solaire
+    if cancel == True:
+        return
+    brain_bot.move(20, 'cm', 0, 30)
+    brain_bot.move_tank(-50, 'degrees', 30, 0)
+    brain_bot.move(-20, 'cm', 0, 30)
+    if cancel == True:
+        return
+    # on attrape la première unité d'énergie
+    brain_bot.move_tank(150, 'degrees', 0, 30)
+    brain_bot.move(-20, 'cm', 0, 30)
+    if cancel == True:
+        return
+    brain_bot.move_tank(40, 'degrees', 0, 30)
+    brain_bot.move(-10, 'cm', 0, 30)
+    brain_bot.move_tank(100, 'degrees', 0, 30)
+    brain_bot.move(-20, 'cm', 0, 30)
+    brain_bot.move_tank(50, 'degrees', 0, 30)
+    brain_bot.move(-10, 'cm', 0, 30)
+    brain_bot.move_tank(100, 'degrees', 0, 30)
+    brain_bot.move(-10, 'cm', 0, 30)
+    brain_bot.move_tank(100, 'degrees', 0, 30)
+    brain_bot.move(-90, 'cm', 0, 100)
 
 def usine_jouets():
     brain_bot.move_tank(107, 'cm', 70, 70)
@@ -268,10 +288,7 @@ hub2.button.right.callback(breakFunction)
 menu([
     'eolienne',
     'television',
-    'hand',
+    'depot_main_solaire',
     'oil_station',
-    'stockage_energie',
-    'panneau_solaire',
-    'usine_jouets '
-    'exit'
+    'usine_jouets'
 ])
