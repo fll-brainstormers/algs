@@ -56,11 +56,7 @@ brain_bot.set_stop_action('coast')
 def follow_line(color, distance,is_right = False, speed = 50):
     integral = 0
     lastError = 0
-    k_fix = 0.5
-    if is_right:
-        k_fix = -0.5
-    else:
-        k_fix = 0.5
+    k_fix = 1.2
     left_motor.set_degrees_counted(0)
 
     while abs(left_motor.get_degrees_counted()) < distance:
@@ -72,7 +68,8 @@ def follow_line(color, distance,is_right = False, speed = 50):
         lastError = error
         D_fix = derivative * 0
         correction = P_fix + I_fix + D_fix
-        brain_bot.start_tank_at_power(int(speed+correction), speed)
+        brain_bot.start_at_power(speed, int(correction))
+    brain_bot.stop()
 
 def hand():
     global cancel
