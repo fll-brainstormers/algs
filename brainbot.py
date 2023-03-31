@@ -157,7 +157,7 @@ def depot_main_solaire():
     # on recule pour attraper de nouveau la ligne
     brain_bot.move(-15, 'cm', 0, 30)
     brain_bot.move_tank(200, 'degrees', 50, 0)
-    follow_line(left_color_sensor, 700, False, 50)
+    follow_line(left_color_sensor, 650, False, 50)
     if cancel == True:
         return
     # on fait la main
@@ -177,21 +177,16 @@ def depot_main_solaire():
     brain_bot.move(-20, 'cm', 0, 30)
     if cancel == True:
         return
-    # on attrape la première unité d'énergie
-    brain_bot.move_tank(150, 'degrees', 0, 30)
-    brain_bot.move(-20, 'cm', 0, 30)
-    if cancel == True:
-        return
-    brain_bot.move_tank(40, 'degrees', 0, 30)
-    brain_bot.move(-10, 'cm', 0, 30)
-    brain_bot.move_tank(100, 'degrees', 0, 30)
-    brain_bot.move(-20, 'cm', 0, 30)
-    brain_bot.move_tank(50, 'degrees', 0, 30)
-    brain_bot.move(-10, 'cm', 0, 30)
-    brain_bot.move_tank(100, 'degrees', 0, 30)
-    brain_bot.move(-10, 'cm', 0, 30)
-    brain_bot.move_tank(100, 'degrees', 0, 30)
-    brain_bot.move(-90, 'cm', 0, 100)
+    # on avance vers la premiere UE
+    brain_bot.move(15, 'cm', 0, 30)
+    # on s'oriente vers les deux suivantes
+    brain_bot.move_tank(130, 'degrees', 0, 30)
+    brain_bot.move(-40, 'cm', 0, 30)
+    brain_bot.move(20, 'cm', 0, 30)
+    brain_bot.move_tank(-250, 'degrees', 50, 0)
+    brain_bot.move(-120, 'cm', 0, 100)
+
+
 
 def usine_jouets():
     brain_bot.move_tank(107, 'cm', 70, 70)
