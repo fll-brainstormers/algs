@@ -190,7 +190,7 @@ def depot_main_solaire():
 
 def usine_jouets():
     brain_bot.move_tank(107, 'cm', 70, 70)
-    motor_pair.move_tank(-90, 'degrees', 10, 10)
+    motor_pair.move_tank(2, 'seconds', -10, -10)
     wait_for_seconds(1)
     brain_bot.move_tank(-10, 'cm', 0, 30)
     brain_bot.move_tank(-20, 'cm', 70, 70)
