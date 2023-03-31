@@ -136,6 +136,7 @@ def television():
     brain_bot.move(-800, 'degrees', 0, 100)
 
 def depot_main_solaire():
+    global cancel
     # on releve le module au maximum
     motor_pair.move_tank(1, 'seconds', 0, 20)
     if cancel == True:
