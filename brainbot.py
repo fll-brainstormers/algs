@@ -98,6 +98,21 @@ def eolienne():
     left_motor.run_for_degrees(100, 30)
     brain_bot.move(-2000, 'degrees', 0, 100)
 
+def traversee():
+    global cancel
+    left_motor.set_degrees_counted(0)
+    while True:
+        if cancel == True:
+            return
+        distance = left_motor.get_degrees_counted()
+        power = 30
+        if distance > 100:
+            power = 50
+        brain_bot.start_at_power(power)
+        if distance > 3800:
+            break
+    brain_bot.stop()
+
 #mission pétrolier
 def oil_station():
     global cancel
@@ -288,6 +303,7 @@ hub2.button.right.callback(breakFunction)
 menu([
     'eolienne',
     'television',
+    'traversee',
     'depot_main_solaire',
     'oil_station',
     'usine_jouets'
