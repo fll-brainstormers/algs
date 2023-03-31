@@ -300,6 +300,7 @@ menu([
     'eolienne',
     'television',
     'traversee',
+    'oil_station',
     'depot_main_solaire',
     'oil_station',
     'usine_jouets'
