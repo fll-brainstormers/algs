@@ -71,6 +71,32 @@ def follow_line(color, distance,is_right = False, speed = 50):
         brain_bot.start_at_power(speed, int(correction))
     brain_bot.stop()
 
+def hydro():
+    global cancel
+    brain_bot.move(25, 'cm', 0, 50)
+    if cancel == True:
+        return
+    brain_bot.move_tank(150, 'degrees', 30, -30)
+    brain_bot.move_tank(-100, 'degrees', 30, -30)
+    if cancel == True:
+        return
+    brain_bot.move(7, 'cm', 0, 100)
+    wait_for_seconds(0.5)
+    brain_bot.move(-7, 'cm', 0, 100)
+    wait_for_seconds(0.5)
+    brain_bot.move(7, 'cm', 0, 100)
+    if cancel == True:
+        return
+    brain_bot.move(-7, 'cm', 0, 100)
+    wait_for_seconds(0.5)
+    brain_bot.move(7, 'cm', 0, 100)
+    wait_for_seconds(0.5)
+    brain_bot.move(-7, 'cm', 0, 100)
+    wait_for_seconds(0.5)
+    brain_bot.move(7, 'cm', 0, 100)
+    wait_for_seconds(0.5)
+    brain_bot.move(-50, 'cm', 0, 100)
+
 
 def eolienne():
     global cancel
@@ -302,6 +328,6 @@ menu([
     'traversee',
     'oil_station',
     'depot_main_solaire',
-    'oil_station',
+    'hydro',
     'usine_jouets'
 ])
