@@ -120,7 +120,7 @@ def oil_station():
     if cancel == True:
         return
     for i in range(4):
-        brain_bot.move_tank(5, 'cm', 30, 30)
+        brain_bot.move_tank(5.5, 'cm', 30, 30)
         wait_for_seconds(0.5)
         brain_bot.move_tank(-5, 'cm', 30, 30)
         if cancel == True:
