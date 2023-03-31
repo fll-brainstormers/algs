@@ -174,7 +174,7 @@ def depot_main_solaire():
         return
     brain_bot.move(20, 'cm', 0, 30)
     brain_bot.move_tank(-50, 'degrees', 30, 0)
-    brain_bot.move(-20, 'cm', 0, 30)
+    brain_bot.move(-25, 'cm', 0, 30)
     if cancel == True:
         return
     # on avance vers la premiere UE
